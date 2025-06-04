@@ -1,7 +1,7 @@
 import gdown
 import timeit
 
-# Коментар: Завантаження файлів з Google Drive за ID
+# Завантаження файлів з Google Drive за ID
 url1 = 'https://drive.google.com/uc?id=18_R5vEQ3eDuy2VdV3K5Lu-R-B-adxXZh'
 url2 = 'https://drive.google.com/uc?id=18BfXyQcmuinEI_8KDSnQm4bLx6yIFS_w'
 
@@ -9,7 +9,7 @@ url2 = 'https://drive.google.com/uc?id=18BfXyQcmuinEI_8KDSnQm4bLx6yIFS_w'
 gdown.download(url1, 'article1.txt', quiet=False)
 gdown.download(url2, 'article2.txt', quiet=False)
 
-# Коментар: Читаємо текст із файлів
+# Читаємо текст із файлів
 with open("article1.txt", "r", encoding="latin1") as f:
     text1 = f.read()
 with open("article2.txt", "r", encoding="latin1") as f:
@@ -19,7 +19,7 @@ with open("article2.txt", "r", encoding="latin1") as f:
 existing_substring = "the"  # Існуючий підрядок
 nonexistent_substring = "qwerty12345"  # Вигаданий підрядок
 
-# --- Алгоритм Кнута-Морріса-Пратта ---
+# Алгоритм Кнута-Морріса-Пратта ---
 def kmp_search(text, pattern):
     def build_lps(pattern):
         lps = [0] * len(pattern)
@@ -53,7 +53,7 @@ def kmp_search(text, pattern):
                 i += 1
     return -1
 
-# --- Алгоритм Рабіна-Карпа ---
+# Алгоритм Рабіна-Карпа ---
 def rabin_karp(text, pattern, d=256, q=101):
     n = len(text)
     m = len(pattern)
@@ -75,7 +75,7 @@ def rabin_karp(text, pattern, d=256, q=101):
             t = (t + q) % q
     return -1
 
-# --- Алгоритм Боєра-Мура ---
+# Алгоритм Боєра-Мура ---
 def boyer_moore(text, pattern):
     def bad_char_heuristic(pattern):
         bad_char = [-1] * 256
@@ -97,7 +97,7 @@ def boyer_moore(text, pattern):
             s += max(1, j - bad_char[ord(text[s + j])])
     return -1
 
-# --- Функція для заміру часу ---
+# Функція для заміру часу ---
 def measure_time(search_func, text, pattern):
     return timeit.timeit(lambda: search_func(text, pattern), number=1)
 
